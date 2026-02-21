@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+  <Ad>
+    <ImageUrl>https://covers.openlibrary.org/b/isbn/9780062085481-L.jpg</ImageUrl>
+    <NavigateUrl>BookDetails.aspx?id=1</NavigateUrl>
+    <AlternateText>Shatter Me by Tahereh Mafi</AlternateText>
+    <Impressions>40</Impressions>
+    <Keyword>Dystopian</Keyword>
+  </Ad>
+  <Ad>
+    <ImageUrl>https://covers.openlibrary.org/b/isbn/9780747532743-L.jpg</ImageUrl>
+    <NavigateUrl>BookDetails.aspx?id=45</NavigateUrl>
+    <AlternateText>Harry Potter and the Philosopher's Stone</AlternateText>
+    <Impressions>40</Impressions>
+    <Keyword>Fantasy</Keyword>
+  </Ad>
+  <Ad>
+    <ImageUrl>https://covers.openlibrary.org/b/isbn/9780439023481-L.jpg</ImageUrl>
+    <NavigateUrl>BookDetails.aspx?id=52</NavigateUrl>
+    <AlternateText>The Hunger Games by Suzanne Collins</AlternateText>
+    <Impressions>30</Impressions>
+    <Keyword>Dystopian</Keyword>
+  </Ad>
+  <Ad>
+    <ImageUrl>https://covers.openlibrary.org/b/isbn/9781586380199-L.jpg</ImageUrl>
+    <NavigateUrl>BookDetails.aspx?id=18</NavigateUrl>
+    <AlternateText>Bhagavad Gita</AlternateText>
+    <Impressions>30</Impressions>
+    <Keyword>Spirituality</Keyword>
+  </Ad>
+  <Ad>
+    <ImageUrl>https://covers.openlibrary.org/b/isbn/9780316310277-L.jpg</ImageUrl>
+    <NavigateUrl>BookDetails.aspx?id=30</NavigateUrl>
+    <AlternateText>The Cruel Prince by Holly Black</AlternateText>
+    <Impressions>30</Impressions>
+    <Keyword>Fantasy</Keyword>
+  </Ad>
+</Advertisements>
