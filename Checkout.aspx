@@ -1,59 +1,160 @@
-<%@ Page Title="Checkout" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="Checkout" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="Checkout.aspx.cs" Inherits="OnlineBookStore.CheckoutPage" %>
 
     <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <h1 style="font-size: 32px; font-weight: 700; color: #1a1a2e; margin-bottom: 24px;">Checkout</h1>
+        <font face="Arial" size="6" color="#1a1a2e"><b>Checkout</b></font>
+        <br /><br />
 
-        <div style="display: flex; gap: 30px; flex-wrap: wrap;">
-            <!-- Delivery Details -->
-            <div
-                style="flex: 1; min-width: 300px; background: #fff; border-radius: 16px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);">
-                <h2 style="font-size: 20px; font-weight: 600; color: #1a1a2e; margin-bottom: 20px;">Delivery Details
-                </h2>
+        <!-- Error Message -->
+        <asp:Label ID="lblError" runat="server" Visible="false" Font-Names="Arial" Font-Bold="true"
+            ForeColor="#dc3545" />
 
-                <asp:Label ID="lblError" runat="server" CssClass="alert-danger" Visible="false"
-                    style="display: block; margin-bottom: 16px;" />
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <!-- Left Column: Shipping Form -->
+                <td width="60%" valign="top">
+                    <table width="100%" border="0" cellpadding="30" cellspacing="0" bgcolor="#ffffff">
+                        <tr>
+                            <td>
+                                <font face="Arial" size="4" color="#1a1a2e"><b>Shipping Address</b></font>
+                                <hr color="#d4cfc7" size="1" />
+                                <br />
 
-                <div style="margin-bottom: 16px;">
-                    <label class="form-label">Full Name</label>
-                    <asp:TextBox ID="txtName" runat="server" CssClass="form-control" placeholder="Your full name" />
-                </div>
-                <div style="margin-bottom: 16px;">
-                    <label class="form-label">Delivery Address</label>
-                    <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"
-                        placeholder="Street, City, PIN code" />
-                </div>
-                <div style="margin-bottom: 24px;">
-                    <label class="form-label">Phone Number</label>
-                    <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control"
-                        placeholder="10-digit phone number" />
-                </div>
-                <asp:Button ID="btnPlace" runat="server" Text="Place Order" OnClick="btnPlace_Click"
-                    CssClass="btn btn-primary" style="width: 100%; padding: 14px; font-size: 16px;" />
-            </div>
+                                <font face="Arial" size="3" color="#5a5a5a"><b>Full Name</b></font><br />
+                                <asp:TextBox ID="txtFullName" runat="server" Width="100%" Height="35"
+                                    Font-Names="Arial" /><br /><br />
 
-            <!-- Order Summary -->
-            <div
-                style="width: 340px; background: #fff; border-radius: 16px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); height: fit-content;">
-                <h2 style="font-size: 20px; font-weight: 600; color: #1a1a2e; margin-bottom: 20px;">Order Summary</h2>
-                <asp:Repeater ID="rptSummary" runat="server">
-                    <ItemTemplate>
-                        <div
-                            style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0ece4;">
-                            <span style="font-size: 14px; color: #555;">
-                                <%# Eval("BookTitle") %> ×<%# Eval("Quantity") %>
-                            </span>
-                            <span style="font-size: 14px; font-weight: 600; color: #1a1a2e;">₹<%# Eval("Price") %>
-                                    </span>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-                <div
-                    style="display: flex; justify-content: space-between; padding-top: 16px; margin-top: 8px; border-top: 2px solid #1a1a2e;">
-                    <span style="font-size: 18px; font-weight: 700; color: #1a1a2e;">Total</span>
-                    <asp:Label ID="lblTotal" runat="server"
-                        style="font-size: 18px; font-weight: 700; color: #c45b3e;" />
-                </div>
-            </div>
-        </div>
+                                <font face="Arial" size="3" color="#5a5a5a"><b>Street Address</b></font><br />
+                                <asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine" Rows="3" Width="100%"
+                                    Font-Names="Arial" /><br /><br />
+
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td width="48%">
+                                            <font face="Arial" size="3" color="#5a5a5a"><b>City</b></font><br />
+                                            <asp:TextBox ID="txtCity" runat="server" Width="100%" Height="35"
+                                                Font-Names="Arial" />
+                                        </td>
+                                        <td width="4%">&nbsp;</td>
+                                        <td width="48%">
+                                            <font face="Arial" size="3" color="#5a5a5a"><b>Postal Code</b></font><br />
+                                            <asp:TextBox ID="txtPostalCode" runat="server" Width="100%" Height="35"
+                                                Font-Names="Arial" />
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <br /><br />
+                                <font face="Arial" size="4" color="#1a1a2e"><b>Payment Information</b></font>
+                                <hr color="#d4cfc7" size="1" />
+                                <br />
+
+                                <font face="Arial" size="3" color="#5a5a5a"><b>Card Number</b></font><br />
+                                <asp:TextBox ID="txtCardNumber" runat="server" Width="100%" Height="35"
+                                    Font-Names="Arial" /><br /><br />
+
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td width="48%">
+                                            <font face="Arial" size="3" color="#5a5a5a"><b>Expiry Date (MM/YY)</b>
+                                            </font><br />
+                                            <asp:TextBox ID="txtExpiry" runat="server" Width="100%" Height="35"
+                                                Font-Names="Arial" />
+                                        </td>
+                                        <td width="4%">&nbsp;</td>
+                                        <td width="48%">
+                                            <font face="Arial" size="3" color="#5a5a5a"><b>CVV</b></font><br />
+                                            <asp:TextBox ID="txtCVV" runat="server" Width="100%" Height="35"
+                                                Font-Names="Arial" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br /><br />
+
+                                <asp:Button ID="btnPlaceOrder" runat="server" Text="Place Order"
+                                    OnClick="btnPlace_Click" BackColor="#c45b3e" ForeColor="White"
+                                    Font-Names="Arial" Font-Bold="true" Height="45" Width="100%" BorderStyle="None" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td width="3%">&nbsp;</td>
+
+                <!-- Right Column: Order Summary -->
+                <td width="37%" valign="top">
+                    <table width="100%" border="0" cellpadding="20" cellspacing="0" bgcolor="#ffffff">
+                        <tr>
+                            <td>
+                                <font face="Arial" size="4" color="#1a1a2e"><b>Order Summary</b></font>
+                                <hr color="#d4cfc7" size="1" />
+                                <br />
+                                <asp:Repeater ID="rptOrderSummary" runat="server">
+                                    <ItemTemplate>
+                                        <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                                            <tr>
+                                                <td colspan="2">
+                                                    <font face="Arial" size="3" color="#1a1a2e"><b>
+                                                            <%# Eval("BookTitle") %>
+                                                        </b></font>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                    <font face="Arial" size="2" color="#888888">Qty: <%#
+                                                            Eval("Quantity") %>
+                                                    </font>
+                                                </td>
+                                                <td align="right">
+                                                    <font face="Arial" size="3" color="#1a1a2e">Rs. <%# Eval("Price") %>
+                                                    </font>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <hr color="#f4f1eb" size="1" />
+                                    </ItemTemplate>
+                                </asp:Repeater>
+
+                                <br />
+                                <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                                    <tr>
+                                        <td align="left">
+                                            <font face="Arial" size="3" color="#888888">Subtotal:</font>
+                                        </td>
+                                        <td align="right">
+                                            <font face="Arial" size="3" color="#1a1a2e"><b>
+                                                    <asp:Label ID="lblSubtotal" runat="server" />
+                                                </b></font>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <font face="Arial" size="3" color="#888888">Shipping:</font>
+                                        </td>
+                                        <td align="right">
+                                            <font face="Arial" size="3" color="#1a1a2e"><b>Rs. 50</b></font>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <hr color="#d4cfc7" size="1" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <font face="Arial" size="4" color="#1a1a2e"><b>Total:</b></font>
+                                        </td>
+                                        <td align="right">
+                                            <font face="Arial" size="4" color="#e4717a"><b>
+                                                    <asp:Label ID="lblTotal" runat="server" />
+                                                </b></font>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     </asp:Content>

@@ -30,14 +30,16 @@ namespace OnlineBookStore
 
             if (!IsPostBack)
             {
-                lblOrderId.Text = "Order #" + order.Id;
-                rptItems.DataSource = order.Items;
-                rptItems.DataBind();
-                lblTotal.Text = "₹" + order.TotalAmount;
-                lblName.Text = order.DeliveryName;
-                lblAddress.Text = order.DeliveryAddress;
-                lblPhone.Text = order.DeliveryPhone;
-                lblDate.Text = order.OrderDate.ToString("dd MMM yyyy, hh:mm tt");
+                lblOrderId.Text = order.Id.ToString();
+                lblOrderDate.Text = order.OrderDate.ToString("dd MMM yyyy, hh:mm tt");
+                lblStatus.Text = "Placed";
+
+                rptOrderItems.DataSource = order.Items;
+                rptOrderItems.DataBind();
+
+                lblTotalItems.Text = order.Items.Sum(i => i.Quantity).ToString();
+                lblTotal.Text = "Rs. " + order.TotalAmount;
+                lblAddress.Text = order.DeliveryName + "<br/>" + order.DeliveryAddress;
             }
         }
     }

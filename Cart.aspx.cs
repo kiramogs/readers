@@ -11,7 +11,9 @@ namespace OnlineBookStore
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+            {
                 BindCart();
+            }
         }
 
         private void BindCart()
@@ -19,16 +21,19 @@ namespace OnlineBookStore
             var cart = Session["Cart"] as List<CartItem>;
             if (cart == null || cart.Count == 0)
             {
-                pnlEmpty.Visible = true;
-                pnlCart.Visible = false;
+                pnlEmptyCart.Visible = true;
+                pnlCartContent.Visible = false;
                 return;
             }
 
-            pnlEmpty.Visible = false;
-            pnlCart.Visible = true;
+            pnlEmptyCart.Visible = false;
+            pnlCartContent.Visible = true;
+
             rptCart.DataSource = cart;
             rptCart.DataBind();
-            lblTotal.Text = "₹" + cart.Sum(c => c.Price * c.Quantity);
+
+            lblItemCount.Text = cart.Sum(c => c.Quantity).ToString();
+            lblTotal.Text = "Rs. " + cart.Sum(c => c.Price * c.Quantity);
         }
 
         protected void rptCart_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -42,6 +47,7 @@ namespace OnlineBookStore
                     cart.RemoveAll(c => c.BookId == bookId);
                     Session["Cart"] = cart;
                 }
+
                 BindCart();
             }
         }
@@ -59,6 +65,7 @@ namespace OnlineBookStore
                 Response.Redirect("Login.aspx");
                 return;
             }
+
             Response.Redirect("Checkout.aspx");
         }
     }

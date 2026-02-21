@@ -1,55 +1,127 @@
-<%@ Page Title="Shopping Cart" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="Shopping Cart" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="Cart.aspx.cs" Inherits="OnlineBookStore.CartPage" %>
 
     <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <h1 style="font-size: 32px; font-weight: 700; color: #1a1a2e; margin-bottom: 24px;">🛒 Shopping Cart</h1>
+        <font face="Arial" size="6" color="#1a1a2e"><b>Shopping Cart</b></font>
+        <br /><br />
 
-        <asp:Panel ID="pnlEmpty" runat="server" Visible="false">
-            <div style="text-align: center; padding: 60px 0;">
-                <p style="font-size: 18px; color: #888; margin-bottom: 20px;">Your cart is empty</p>
-                <a href="BrowseBooks.aspx" class="btn btn-primary">Browse Books</a>
-            </div>
+        <asp:Label ID="lblMessage" runat="server" Visible="false" Font-Names="Arial" Font-Bold="true" />
+
+        <asp:Panel ID="pnlEmptyCart" runat="server" Visible="false">
+            <table width="100%" border="0" cellpadding="40" cellspacing="0" bgcolor="#ffffff">
+                <tr>
+                    <td align="center">
+                        <font face="Arial" size="5" color="#888888">Your cart is completely empty.</font>
+                        <br /><br /><br />
+                        <a href="BrowseBooks.aspx">
+                            <table border="0" cellpadding="15" cellspacing="0" bgcolor="#e4717a">
+                                <tr>
+                                    <td>
+                                        <font face="Arial" color="#ffffff" size="4"><b>Continue Shopping</b></font>
+                                    </td>
+                                </tr>
+                            </table>
+                        </a>
+                    </td>
+                </tr>
+            </table>
         </asp:Panel>
 
-        <asp:Panel ID="pnlCart" runat="server">
-            <asp:Repeater ID="rptCart" runat="server" OnItemCommand="rptCart_ItemCommand">
-                <ItemTemplate>
-                    <div
-                        style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 16px 20px; border-radius: 12px; margin-bottom: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.06);">
-                        <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("BookTitle") %>'
-                            style="width: 60px; height: 85px; object-fit: cover; border-radius: 6px;" />
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 16px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px;">
-                                <%# Eval("BookTitle") %>
-                            </h3>
-                            <p style="font-size: 14px; color: #888;">Qty: <%# Eval("Quantity") %>
-                            </p>
-                        </div>
-                        <p
-                            style="font-size: 18px; font-weight: 700; color: #c45b3e; min-width: 80px; text-align: right;">
-                            ₹<%# Eval("Price") %>
-                        </p>
-                        <asp:LinkButton ID="btnRemove" runat="server" CommandName="Remove"
-                            CommandArgument='<%# Eval("BookId") %>'
-                            style="color: #dc3545; font-size: 13px; font-weight: 600; padding: 6px 12px; border: 1px solid #dc3545; border-radius: 6px;">
-                            Remove</asp:LinkButton>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
+        <asp:Panel ID="pnlCartContent" runat="server">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <!-- Left Column: Cart Items -->
+                    <td width="70%" valign="top">
+                        <asp:Repeater ID="rptCart" runat="server" OnItemCommand="rptCart_ItemCommand">
+                            <ItemTemplate>
+                                <table width="100%" border="0" cellpadding="20" cellspacing="0" bgcolor="#ffffff">
+                                    <tr>
+                                        <td width="120">
+                                            <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("BookTitle") %>' width="100"
+                                                height="150" border="0"
+                                                onerror="this.src='https://via.placeholder.com/100x150?text=No+Cover'" />
+                                        </td>
+                                        <td valign="top">
+                                            <font face="Arial" size="4" color="#1a1a2e"><b>
+                                                    <%# Eval("BookTitle") %>
+                                                </b></font><br /><br />
+                                            <font face="Arial" size="4" color="#e4717a"><b>Rs. <%# Eval("Price") %></b>
+                                            </font>
+                                        </td>
+                                        <td valign="middle" align="center" width="150">
+                                            <font face="Arial" size="3" color="#1a1a2e"><b>Qty: <%# Eval("Quantity") %>
+                                                        </b></font>
+                                            <br /><br />
+                                            <asp:LinkButton ID="btnRemove" runat="server" CommandName="Remove"
+                                                CommandArgument='<%# Eval("BookId") %>' ForeColor="#dc3545"
+                                                Font-Names="Arial"><b>Remove</b></asp:LinkButton>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </td>
 
-            <div
-                style="background: #fff; border-radius: 12px; padding: 24px; margin-top: 20px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <p style="font-size: 14px; color: #888;">Total Amount</p>
-                    <asp:Label ID="lblTotal" runat="server"
-                        style="font-size: 28px; font-weight: 700; color: #1a1a2e;" />
-                </div>
-                <div style="display: flex; gap: 12px;">
-                    <asp:Button ID="btnClear" runat="server" Text="Clear Cart" OnClick="btnClear_Click"
-                        CssClass="btn btn-danger" />
-                    <asp:Button ID="btnCheckout" runat="server" Text="Proceed to Checkout" OnClick="btnCheckout_Click"
-                        CssClass="btn btn-primary" />
-                </div>
-            </div>
+                    <td width="2%">&nbsp;</td>
+
+                    <!-- Right Column: Order Summary -->
+                    <td width="28%" valign="top">
+                        <table width="100%" border="0" cellpadding="20" cellspacing="0" bgcolor="#ffffff">
+                            <tr>
+                                <td>
+                                    <font face="Arial" size="4" color="#1a1a2e"><b>Order Summary</b></font>
+                                    <hr color="#d4cfc7" size="1" />
+                                    <br />
+                                    <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                                        <tr>
+                                            <td align="left">
+                                                <font face="Arial" size="3" color="#888888">Total Items:</font>
+                                            </td>
+                                            <td align="right">
+                                                <font face="Arial" size="3" color="#1a1a2e"><b>
+                                                        <asp:Label ID="lblItemCount" runat="server" />
+                                                    </b></font>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left">
+                                                <font face="Arial" size="4" color="#1a1a2e"><b>Total:</b></font>
+                                            </td>
+                                            <td align="right">
+                                                <font face="Arial" size="4" color="#e4717a"><b>
+                                                        <asp:Label ID="lblTotal" runat="server" />
+                                                    </b></font>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br /><br />
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td>
+                                                <asp:Button ID="btnCheckout" runat="server" Text="Proceed to Checkout"
+                                                    OnClick="btnCheckout_Click" BackColor="#c45b3e" ForeColor="White"
+                                                    Font-Names="Arial" Font-Bold="true" Height="45" Width="100%"
+                                                    BorderStyle="None" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="10"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:Button ID="btnClearCart" runat="server" Text="Clear Cart"
+                                                    OnClick="btnClear_Click" BackColor="#ffffff" ForeColor="#dc3545"
+                                                    Font-Names="Arial" Font-Bold="true" Height="45" Width="100%"
+                                                    BorderStyle="Solid" BorderColor="#dc3545" BorderWidth="2" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </asp:Panel>
     </asp:Content>

@@ -26,20 +26,6 @@ namespace OnlineBookStore.Models
 
             Books = new List<Book>
             {
-                // ── 1–13. SHATTER ME SERIES — Tahereh Mafi ──────────────
-                new Book { Id = 1, Title = "Shatter Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 349, Description = "Juliette's touch is lethal. Locked away by The Reestablishment, she never expected to fall in love. But Warner wants to use her as a weapon.", ImageUrl = "https://covers.openlibrary.org/b/isbn/9780062085481-L.jpg", ISBN = "978-0062085481" },
-                new Book { Id = 2, Title = "Unravel Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 349, Description = "Juliette has escaped to Omega Point. She's free from The Reestablishment but is haunted by her past and torn between two powerful men.", ImageUrl = "https://covers.openlibrary.org/b/isbn/9780062085535-L.jpg", ISBN = "978-0062085535" },
-                new Book { Id = 3, Title = "Ignite Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 349, Description = "Omega Point is in ruins and Juliette must lead the resistance. But can she be the leader everyone needs while battling her own demons?", ImageUrl = "https://covers.openlibrary.org/b/isbn/9780062085580-L.jpg", ISBN = "978-0062085580" },
-                new Book { Id = 4, Title = "Restore Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 349, Description = "Juliette and Warner are rebuilding the world, but new threats emerge as they uncover dark secrets about The Reestablishment.", ImageUrl = "https://covers.openlibrary.org/b/id/14546654-L.jpg", ISBN = "978-0062676368" },
-                new Book { Id = 5, Title = "Defy Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 349, Description = "Juliette's world shatters when she discovers the truth about her identity. With alliances shifting, she must find the strength to fight back.", ImageUrl = "https://covers.openlibrary.org/b/id/12476553-L.jpg", ISBN = "978-0062676412" },
-                new Book { Id = 6, Title = "Imagine Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 369, Description = "The explosive finale. Juliette must confront the darkest corners of her past to forge a new future and save everything she loves.", ImageUrl = "https://covers.openlibrary.org/b/id/10413129-L.jpg", ISBN = "978-0062676450" },
-                new Book { Id = 7, Title = "Destroy Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 199, Description = "A novella told from Warner's perspective, revealing the man behind the villain and his obsession with Juliette.", ImageUrl = "https://covers.openlibrary.org/b/id/8759365-L.jpg", ISBN = "978-0062085504" },
-                new Book { Id = 8, Title = "Fracture Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 199, Description = "A novella from Adam's point of view set in the days before Omega Point's final battle.", ImageUrl = "https://covers.openlibrary.org/b/id/8759368-L.jpg", ISBN = "978-0062282385" },
-                new Book { Id = 9, Title = "Shadow Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 199, Description = "A novella from Kenji's perspective that bridges the gap between Defy Me and Imagine Me.", ImageUrl = "https://covers.openlibrary.org/b/id/10413124-L.jpg", ISBN = "978-0062866578" },
-                new Book { Id = 10, Title = "Reveal Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 199, Description = "A novella collection of stories from multiple perspectives, filling in gaps between the main series novels.", ImageUrl = "https://covers.openlibrary.org/b/id/10413126-L.jpg", ISBN = "978-0062866561" },
-                new Book { Id = 11, Title = "Believe Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 199, Description = "The final novella in the Shatter Me series, wrapping up the love stories and friendships that defined the saga.", ImageUrl = "https://covers.openlibrary.org/b/id/12893374-L.jpg", ISBN = "978-0063083776" },
-                new Book { Id = 12, Title = "Watch Me", Author = "Tahereh Mafi", Genre = "Dystopian", Price = 199, Description = "A brand-new novella expanding the Shatter Me universe with fresh perspectives and surprises.", ImageUrl = "https://covers.openlibrary.org/b/id/14546710-L.jpg", ISBN = "978-0063255319" },
-
                 // ── 13. THE SUN IS ALSO A STAR ─────────────────────────────
                 new Book { Id = 13, Title = "The Sun Is Also a Star", Author = "Nicola Yoon", Genre = "Romance", Price = 329, Description = "Natasha believes in science and facts. Daniel believes in dreams and destiny. On one fateful day in New York City, they meet — and everything changes.", ImageUrl = "https://covers.openlibrary.org/b/isbn/9780553496710-L.jpg", ISBN = "978-0553496710" },
 
@@ -156,3 +142,4 @@ namespace OnlineBookStore.Models
         }
     }
 }
+

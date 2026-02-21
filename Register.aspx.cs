@@ -15,36 +15,39 @@ namespace OnlineBookStore
             string userName = txtUsername.Text.Trim();
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text;
-            string confirm = txtConfirm.Text;
+            string confirm = txtConfirmPassword.Text;
 
-            lblError.Visible = false;
-            lblSuccess.Visible = false;
+            lblMessage.Visible = false;
 
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
-                lblError.Text = "Please fill in all fields.";
-                lblError.Visible = true;
+                lblMessage.ForeColor = System.Drawing.ColorTranslator.FromHtml("#dc3545");
+                lblMessage.Text = "Please fill in all fields.";
+                lblMessage.Visible = true;
                 return;
             }
 
             if (password != confirm)
             {
-                lblError.Text = "Passwords do not match.";
-                lblError.Visible = true;
+                lblMessage.ForeColor = System.Drawing.ColorTranslator.FromHtml("#dc3545");
+                lblMessage.Text = "Passwords do not match.";
+                lblMessage.Visible = true;
                 return;
             }
 
             if (password.Length < 6)
             {
-                lblError.Text = "Password must be at least 6 characters.";
-                lblError.Visible = true;
+                lblMessage.ForeColor = System.Drawing.ColorTranslator.FromHtml("#dc3545");
+                lblMessage.Text = "Password must be at least 6 characters.";
+                lblMessage.Visible = true;
                 return;
             }
 
             if (DataStore.Users.Any(u => u.UserName == userName))
             {
-                lblError.Text = "Username already exists.";
-                lblError.Visible = true;
+                lblMessage.ForeColor = System.Drawing.ColorTranslator.FromHtml("#dc3545");
+                lblMessage.Text = "Username already exists.";
+                lblMessage.Visible = true;
                 return;
             }
 
@@ -56,8 +59,9 @@ namespace OnlineBookStore
                 PasswordHash = HashPassword(password)
             });
 
-            lblSuccess.Text = "Account created! You can now sign in.";
-            lblSuccess.Visible = true;
+            lblMessage.ForeColor = System.Drawing.Color.Green;
+            lblMessage.Text = "Account created! You can now sign in.";
+            lblMessage.Visible = true;
         }
 
         private string HashPassword(string password)
@@ -67,7 +71,10 @@ namespace OnlineBookStore
                 byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
                 StringBuilder sb = new StringBuilder();
                 foreach (byte b in bytes)
+                {
                     sb.Append(b.ToString("x2"));
+                }
+
                 return sb.ToString();
             }
         }

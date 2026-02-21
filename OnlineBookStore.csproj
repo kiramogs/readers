@@ -12,6 +12,8 @@
     <OutputType>Library</OutputType>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <UseIISExpress>true</UseIISExpress>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v18.0</VSToolsPath>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">18.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

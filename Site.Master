@@ -1,72 +1,60 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="OnlineBookStore.SiteMaster" %>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="OnlineBookStore.SiteMaster" %>
+<html>
 <head runat="server">
-    <title>Readers — Online BookStore</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #f4f1eb; color: #2c2c2c; min-height: 100vh; display: flex; flex-direction: column; }
-        a { text-decoration: none; color: inherit; }
-
-        .navbar { background: #1a1a2e; padding: 12px 40px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-        .navbar .brand { display: flex; align-items: center; }
-        .navbar .brand img { height: 60px; width: auto; }
-        .navbar .nav-links { display: flex; gap: 20px; align-items: center; }
-        .navbar .nav-links a { color: #e0d6c8; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 6px; transition: background 0.2s; }
-        .navbar .nav-links a:hover { background: rgba(255,255,255,0.1); }
-        .navbar .cart-badge { background: #c45b3e; color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 10px; margin-left: 4px; }
-        .navbar .user-info { color: #c9a87c; font-size: 13px; font-weight: 600; }
-
-        .main-content { flex: 1; padding: 30px 40px; max-width: 1200px; margin: 0 auto; width: 100%; }
-
-        .btn { display: inline-block; padding: 10px 22px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
-        .btn-primary { background: #c45b3e; color: #fff; }
-        .btn-primary:hover { background: #a94832; }
-        .btn-secondary { background: #1a1a2e; color: #fff; }
-        .btn-secondary:hover { background: #2a2a4e; }
-        .btn-outline { background: transparent; border: 2px solid #c45b3e; color: #c45b3e; }
-        .btn-outline:hover { background: #c45b3e; color: #fff; }
-        .btn-danger { background: #dc3545; color: #fff; }
-        .btn-danger:hover { background: #b02a37; }
-
-        .form-control { width: 100%; padding: 10px 14px; border: 1px solid #d4cfc7; border-radius: 6px; font-size: 14px; font-family: 'Inter', sans-serif; background: #fff; }
-        .form-control:focus { outline: none; border-color: #c45b3e; box-shadow: 0 0 0 3px rgba(196,91,62,0.15); }
-        .form-label { display: block; font-size: 13px; font-weight: 600; color: #5a5a5a; margin-bottom: 6px; }
-
-        .alert-success { background: #d4edda; color: #155724; padding: 12px 18px; border-radius: 6px; margin-bottom: 16px; }
-        .alert-danger { background: #f8d7da; color: #721c24; padding: 12px 18px; border-radius: 6px; margin-bottom: 16px; }
-        .alert-info { background: #d1ecf1; color: #0c5460; padding: 12px 18px; border-radius: 6px; margin-bottom: 16px; }
-    </style>
-    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+    <title>Readers</title>
 </head>
-<body>
+<body bgcolor="#FFB6C1" text="#1a1a2e" link="#1a1a2e" vlink="#1a1a2e" alink="#c45b3e" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
     <form id="form1" runat="server">
-        <nav class="navbar">
-            <a href="Default.aspx" class="brand">
-                <img src="Images/logo.png" alt="Readers" />
-            </a>
-            <div class="nav-links">
-                <a href="Default.aspx">Home</a>
-                <a href="BrowseBooks.aspx">Browse</a>
-                <asp:HyperLink ID="lnkCart" runat="server" NavigateUrl="~/Cart.aspx">
-                    🛒 Cart <asp:Label ID="lblCartCount" runat="server" CssClass="cart-badge" Text="0" />
-                </asp:HyperLink>
-                <asp:Panel ID="pnlLoggedIn" runat="server" Visible="false">
-                    <asp:Label ID="lblUser" runat="server" CssClass="user-info" />
-                    <a href="Profile.aspx">Profile</a>
-                    <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" style="color:#e0d6c8;font-size:14px;font-weight:500;padding:8px 16px;border-radius:6px;">Logout</asp:LinkButton>
-                </asp:Panel>
-                <asp:Panel ID="pnlLoggedOut" runat="server" Visible="true">
-                    <a href="Login.aspx">Login</a>
-                    <a href="Register.aspx">Register</a>
-                </asp:Panel>
-            </div>
-        </nav>
-        <div class="main-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-        </div>
+        <!-- Navbar -->
+        <table width="100%" border="0" cellpadding="15" cellspacing="0" bgcolor="#ffffff">
+            <tr>
+                <td width="200" align="center" valign="middle">
+                    <a href="Default.aspx">
+                        <img src="Images/logo.png" alt="Readers" height="150" border="0" />
+                    </a>
+                </td>
+                <td align="right" valign="middle">
+                    <table border="0" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td><a href="Default.aspx"><font face="Arial" color="#1a1a2e"><b>Home</b></font></a></td>
+                            <td><a href="BrowseBooks.aspx"><font face="Arial" color="#1a1a2e"><b>Browse</b></font></a></td>
+                            <td bgcolor="#f4f1eb">
+                                <a href="Cart.aspx">
+                                    <font face="Arial" color="#e4717a"><b>Cart </b></font>
+                                    <font face="Arial" color="#1a1a2e"><b>(<asp:Label ID="lblCartCount" runat="server" Text="0" />)</b></font>
+                                </a>
+                            </td>
+                            <asp:Panel ID="pnlLoggedIn" runat="server" Visible="false">
+                                <td><font face="Arial" color="#888888"><b><asp:Label ID="lblUser" runat="server" /></b></font></td>
+                                <td><a href="Profile.aspx"><font face="Arial" color="#1a1a2e"><b>Profile</b></font></a></td>
+                                <td><asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" ForeColor="#e4717a" Font-Names="Arial" Font-Bold="true">Logout</asp:LinkButton></td>
+                            </asp:Panel>
+                            <asp:Panel ID="pnlLoggedOut" runat="server" Visible="true">
+                                <td><a href="Login.aspx"><font face="Arial" color="#1a1a2e"><b>Login</b></font></a></td>
+                                <td bgcolor="#e4717a"><a href="Register.aspx"><font face="Arial" color="#ffffff"><b>Register</b></font></a></td>
+                            </asp:Panel>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Main Content -->
+        <table width="100%" border="0" cellpadding="40" cellspacing="0">
+            <tr>
+                <td align="center">
+                    <table width="1200" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="left">
+                                <font face="Arial">
+                                    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                                </font>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     </form>
 </body>
 </html>

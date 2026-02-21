@@ -27,14 +27,14 @@ namespace OnlineBookStore
 
             if (!IsPostBack)
             {
-                imgCover.ImageUrl = currentBook.ImageUrl;
+                imgBookCover.ImageUrl = currentBook.ImageUrl;
                 lblTitle.Text = currentBook.Title;
                 lblAuthor.Text = "by " + currentBook.Author;
                 lblGenre.Text = currentBook.Genre;
-                lblPrice.Text = "₹" + currentBook.Price;
-                lblDesc.Text = currentBook.Description;
+                lblPrice.Text = "Rs. " + currentBook.Price;
+                lblDescription.Text = currentBook.Description;
                 lblISBN.Text = "ISBN: " + currentBook.ISBN;
-                Page.Title = currentBook.Title + " — Readers";
+                Page.Title = currentBook.Title + " - Readers";
             }
         }
 
@@ -43,8 +43,11 @@ namespace OnlineBookStore
             var cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
             var existing = cart.FirstOrDefault(c => c.BookId == currentBook.Id);
             if (existing != null)
+            {
                 existing.Quantity++;
+            }
             else
+            {
                 cart.Add(new CartItem
                 {
                     BookId = currentBook.Id,
@@ -53,11 +56,12 @@ namespace OnlineBookStore
                     Quantity = 1,
                     ImageUrl = currentBook.ImageUrl
                 });
+            }
 
             Session["Cart"] = cart;
-            lblAction.Text = "✓ Added to cart!";
-            lblAction.Style["color"] = "#155724";
-            lblAction.Visible = true;
+            lblMessage.Text = "Added to cart!";
+            lblMessage.ForeColor = System.Drawing.Color.Green;
+            lblMessage.Visible = true;
         }
 
         protected void btnWishlist_Click(object sender, EventArgs e)
@@ -83,15 +87,17 @@ namespace OnlineBookStore
                     BookPrice = currentBook.Price,
                     BookImageUrl = currentBook.ImageUrl
                 });
-                lblAction.Text = "♥ Added to wishlist!";
-                lblAction.Style["color"] = "#c45b3e";
+
+                lblMessage.Text = "Added to wishlist!";
+                lblMessage.ForeColor = System.Drawing.ColorTranslator.FromHtml("#c45b3e");
             }
             else
             {
-                lblAction.Text = "Already in your wishlist";
-                lblAction.Style["color"] = "#888";
+                lblMessage.Text = "Already in your wishlist";
+                lblMessage.ForeColor = System.Drawing.Color.Gray;
             }
-            lblAction.Visible = true;
+
+            lblMessage.Visible = true;
         }
     }
 }

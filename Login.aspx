@@ -1,34 +1,53 @@
-<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs"
+﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs"
     Inherits="OnlineBookStore.LoginPage" %>
 
     <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <div style="max-width: 420px; margin: 60px auto;">
-            <div style="background: #fff; border-radius: 16px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-                <h1 style="font-size: 28px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; text-align: center;">
-                    Welcome Back</h1>
-                <p style="text-align: center; color: #888; margin-bottom: 28px; font-size: 14px;">Sign in to your
-                    Readers account</p>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="center">
+                    <br /><br />
+                    <table width="400" border="0" cellpadding="40" cellspacing="0" bgcolor="#ffffff">
+                        <tr>
+                            <td align="center">
+                                <font face="Arial" size="6" color="#1a1a2e"><b>Welcome Back</b></font>
+                                <br /><br /><br />
 
-                <asp:Label ID="lblError" runat="server" CssClass="alert-danger" Visible="false"
-                    style="display: block; margin-bottom: 16px;" />
+                                <asp:Label ID="lblMessage" runat="server" Visible="false" Font-Names="Arial"
+                                    Font-Bold="true" ForeColor="#dc3545" />
 
-                <div style="margin-bottom: 16px;">
-                    <label class="form-label">Username</label>
-                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control"
-                        placeholder="Enter your username" />
-                </div>
-                <div style="margin-bottom: 24px;">
-                    <label class="form-label">Password</label>
-                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password"
-                        placeholder="Enter your password" />
-                </div>
-                <asp:Button ID="btnLogin" runat="server" Text="Sign In" OnClick="btnLogin_Click"
-                    CssClass="btn btn-primary" style="width: 100%; padding: 12px;" />
+                                <table width="100%" border="0" cellpadding="10" cellspacing="0">
+                                    <tr>
+                                        <td align="left">
+                                            <font face="Arial" size="3" color="#5a5a5a"><b>Username</b></font><br />
+                                            <asp:TextBox ID="txtUsername" runat="server" Width="100%" Height="35"
+                                                Font-Names="Arial" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <font face="Arial" size="3" color="#5a5a5a"><b>Password</b></font><br />
+                                            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"
+                                                Width="100%" Height="35" Font-Names="Arial" />
+                                        </td>
+                                    </tr>
+                                </table>
 
-                <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #888;">
-                    Don't have an account? <a href="Register.aspx"
-                        style="color: #c45b3e; font-weight: 600;">Register</a>
-                </p>
-            </div>
-        </div>
+                                <br /><br />
+                                <asp:Button ID="btnLogin" runat="server" Text="Sign In" OnClick="btnLogin_Click"
+                                    BackColor="#e4717a" ForeColor="White" Font-Names="Arial" Font-Bold="true"
+                                    Height="45" Width="100%" BorderStyle="None" />
+
+                                <br /><br /><br />
+                                <font face="Arial" size="3" color="#888888">Don't have an account?</font>
+                                <br /><br />
+                                <a href="Register.aspx">
+                                    <font face="Arial" size="3" color="#e4717a"><b>Create an account</b></font>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <br /><br />
+                </td>
+            </tr>
+        </table>
     </asp:Content>

@@ -17,8 +17,8 @@ namespace OnlineBookStore
 
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
             {
-                lblError.Text = "Please fill in all fields.";
-                lblError.Visible = true;
+                lblMessage.Text = "Please fill in all fields.";
+                lblMessage.Visible = true;
                 return;
             }
 
@@ -33,8 +33,8 @@ namespace OnlineBookStore
             }
             else
             {
-                lblError.Text = "Invalid username or password.";
-                lblError.Visible = true;
+                lblMessage.Text = "Invalid username or password.";
+                lblMessage.Visible = true;
             }
         }
 
@@ -45,7 +45,10 @@ namespace OnlineBookStore
                 byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
                 StringBuilder sb = new StringBuilder();
                 foreach (byte b in bytes)
+                {
                     sb.Append(b.ToString("x2"));
+                }
+
                 return sb.ToString();
             }
         }

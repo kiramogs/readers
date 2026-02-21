@@ -2,7 +2,7 @@ namespace OnlineBookStore
 {
     public partial class LoginPage
     {
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
         protected global::System.Web.UI.WebControls.TextBox txtUsername;
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
         protected global::System.Web.UI.WebControls.Button btnLogin;

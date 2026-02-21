@@ -1,59 +1,84 @@
-<%@ Page Title="Browse Books" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="Browse Books" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="BrowseBooks.aspx.cs" Inherits="OnlineBookStore.BrowseBooks" %>
 
     <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <h1 style="font-size: 32px; font-weight: 700; color: #1a1a2e; margin-bottom: 24px;">Browse Books</h1>
+        <font face="Arial" size="6" color="#1a1a2e"><b>Browse Books</b></font>
+        <br /><br />
 
         <!-- Search & Filter -->
-        <div style="display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; align-items: end;">
-            <div style="flex: 1; min-width: 200px;">
-                <label class="form-label">Search</label>
-                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"
-                    placeholder="Search by title or author..." />
-            </div>
-            <div style="min-width: 160px;">
-                <label class="form-label">Genre</label>
-                <asp:DropDownList ID="ddlGenre" runat="server" CssClass="form-control" />
-            </div>
-            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary"
-                style="height: 42px;" />
-            <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" CssClass="btn btn-outline"
-                style="height: 42px;" />
-        </div>
+        <table width="100%" border="0" cellpadding="20" cellspacing="0" bgcolor="#ffffff">
+            <tr>
+                <td valign="middle">
+                    <table border="0" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td>
+                                <font face="Arial" size="3" color="#1a1a2e"><b>Search Title/Author:</b></font>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtSearch" runat="server" Width="300" Height="30" Font-Names="Arial" />
+                            </td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td>
+                                <font face="Arial" size="3" color="#1a1a2e"><b>Genre:</b></font>
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlGenre" runat="server" Width="200" Height="30"
+                                    Font-Names="Arial" />
+                            </td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td>
+                                <asp:Button ID="btnFilter" runat="server" Text="Filter Options"
+                                    OnClick="btnSearch_Click" BackColor="#e4717a" ForeColor="white" BorderStyle="None"
+                                    Height="35" Width="120" Font-Names="Arial" Font-Bold="true" />
+                            </td>
+                            <td>
+                                <asp:Button ID="btnReset" runat="server" Text="Reset Filters" OnClick="btnReset_Click"
+                                    BackColor="#ffffff" ForeColor="#e4717a" BorderColor="#e4717a" BorderStyle="Solid"
+                                    BorderWidth="2" Height="35" Width="120" Font-Names="Arial" Font-Bold="true" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br /><br />
 
-        <!-- Results Count -->
-        <asp:Label ID="lblCount" runat="server"
-            style="display: block; font-size: 14px; color: #888; margin-bottom: 20px;" />
+        <asp:Label ID="lblNoResults" runat="server" Visible="false">
+            <center>
+                <br /><br />
+                <font face="Arial" size="4" color="#888888">No books found matching your criteria.</font>
+                <br /><br />
+            </center>
+        </asp:Label>
 
-        <!-- Books Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px;">
-            <asp:Repeater ID="rptBooks" runat="server">
-                <ItemTemplate>
-                    <div
-                        style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s;">
-                        <a href='<%# "BookDetails.aspx?id=" + Eval("Id") %>'>
-                            <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("Title") %>'
-                                style="width: 100%; height: 280px; object-fit: cover;"
-                                onerror="this.src='https://via.placeholder.com/200x280?text=No+Cover'" />
-                            <div style="padding: 14px;">
-                                <h3
-                                    style="font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                    <%# Eval("Title") %>
-                                </h3>
-                                <p style="font-size: 12px; color: #888; margin-bottom: 4px;">
-                                    <%# Eval("Author") %>
-                                </p>
-                                <span
-                                    style="font-size: 11px; background: #f4f1eb; color: #5a5a5a; padding: 2px 8px; border-radius: 4px;">
-                                    <%# Eval("Genre") %>
-                                </span>
-                                <p style="font-size: 16px; font-weight: 700; color: #c45b3e; margin-top: 8px;">₹<%#
-                                        Eval("Price") %>
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
-        </div>
+        <table width="100%" border="0" cellpadding="10" cellspacing="0">
+            <tr>
+                <asp:Repeater ID="rptBooks" runat="server">
+                    <ItemTemplate>
+                        <td width="20%" align="center" valign="top" bgcolor="#ffffff">
+                            <table border="0" cellpadding="15" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <a href='<%# "BookDetails.aspx?id=" + Eval("Id") %>'>
+                                            <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("Title") %>' width="160"
+                                                height="240" border="0"
+                                                onerror="this.src='https://via.placeholder.com/160x240?text=No+Cover'" /><br /><br />
+                                            <font face="Arial" size="3" color="#1a1a2e"><b>
+                                                    <%# Eval("Title") %>
+                                                </b></font><br />
+                                            <font face="Arial" size="2" color="#888888">
+                                                <%# Eval("Author") %>
+                                            </font><br /><br />
+                                            <font face="Arial" size="4" color="#e4717a"><b>Rs. <%# Eval("Price") %></b>
+                                            </font>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <%# (Container.ItemIndex + 1) % 5==0 ? "</tr><tr><td colspan='5'>&nbsp;</td></tr><tr>" : "" %>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tr>
+        </table>
     </asp:Content>

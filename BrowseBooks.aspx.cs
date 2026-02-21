@@ -33,7 +33,7 @@ namespace OnlineBookStore
                 books = books.Where(b => b.Genre == genre);
 
             var result = books.ToList();
-            lblCount.Text = result.Count + " book(s) found";
+            lblNoResults.Visible = result.Count == 0;
             rptBooks.DataSource = result;
             rptBooks.DataBind();
         }
